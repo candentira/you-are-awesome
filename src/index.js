@@ -19,7 +19,19 @@ const incrementor = () => {
     return increment();
 };
 const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+const createIncrementer = () => {
+    var innerObj = {
+        value: 0
+    }
+    return function() {
+        return {
+            next: function() {
+                innerObj.value++;
+                return innerObj;
+            }
+        }
+    }
+};
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
