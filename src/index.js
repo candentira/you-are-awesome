@@ -20,17 +20,14 @@ const incrementor = () => {
 };
 const asyncIncrementor = () => {};
 const createIncrementer = () => {
-    var innerObj = {
-        value: 0
+    function* generator() {
+        let i = 1;
+        while(true) {
+            yield i++;
+        }        
     }
-    return function() {
-        return {
-            next: function() {
-                innerObj.value++;
-                return innerObj;
-            }
-        }
-    }
+
+    return generator();
 };
 
 // return same argument not earlier than in one second, and not later, than in two
