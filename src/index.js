@@ -18,7 +18,11 @@ const incrementor = () => {
 
     return increment();
 };
-const asyncIncrementor = () => {};
+const asyncIncrementor = () => {
+    this.i = this.i || 1;
+    let self = this;
+    return Promise.resolve(self.i++);
+};
 const createIncrementer = () => {
     function* generator() {
         let i = 1;
