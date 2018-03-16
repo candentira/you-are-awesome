@@ -20,8 +20,7 @@ const incrementor = () => {
 };
 const asyncIncrementor = () => {
     this.i = this.i || 1;
-    let self = this;
-    return Promise.resolve(self.i++);
+    return Promise.resolve(this.i++);
 };
 const createIncrementer = () => {
     function* generator() {
@@ -40,12 +39,22 @@ const returnBackInSecond = (param) => {
         setTimeout(() => {
           resolve(param);
         }, 1000);
-      });
+    });
 };
 const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => ({});
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (arr) => {
+    let result = [];
+    arr.forEach(el => {
+        let countProto = 0;
+        for(let tempEl = el; tempEl.__proto__; tempEl = tempEl.__proto__) {
+            countProto++;
+        }
+        result[countProto] = el;
+    });
+    return result.filter(item => !!item).reverse();
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
